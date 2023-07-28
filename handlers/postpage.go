@@ -71,8 +71,6 @@ func RenderPostPage(w http.ResponseWriter, r *http.Request) {
 
 	template, err := template.ParseFiles("templates/post.html")
 	if err != nil {
-		fmt.Println("err2")
-		fmt.Println(err)
 		RenderErrorPage(w, http.StatusInternalServerError)
 		return
 	}
@@ -80,8 +78,6 @@ func RenderPostPage(w http.ResponseWriter, r *http.Request) {
 	var temp bytes.Buffer
 	err = template.Execute(&temp, ServerResp)
 	if err != nil {
-		fmt.Println("err1")
-		fmt.Println(err)
 		RenderErrorPage(w, http.StatusInternalServerError)
 		return
 	}
@@ -122,15 +118,11 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 	ServerResp.Err = errResp{}
 	template, err := template.ParseFiles("templates/createPost.html")
 	if err != nil {
-		fmt.Println("FUCK109", err)
-
 		RenderErrorPage(w, http.StatusInternalServerError)
 		return
 	}
 
 	if r.Method != "POST" {
-		fmt.Println("FUCK19", err)
-
 		RenderErrorPage(w, http.StatusMethodNotAllowed)
 		return
 	}

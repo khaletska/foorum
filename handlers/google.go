@@ -33,7 +33,6 @@ func GoogleLogin(w http.ResponseWriter, r *http.Request) {
 func GoogleCallback(w http.ResponseWriter, r *http.Request) {
 	ServerResp.Err = errResp{}
 	page := getLastPage(r)
-	// fmt.Println("I am here")
 
 	if r.FormValue("state") != randomState {
 		fmt.Println("state is not valid")

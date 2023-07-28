@@ -2,7 +2,6 @@ package service
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 )
 
@@ -40,10 +39,8 @@ func AddCategory(category string) error {
 	//TODO
 	_, err := db.Exec(query, -1, category)
 	if err != nil {
-		fmt.Println("Am I here?")
 		return err
 	}
-	fmt.Println(query)
 
 	return nil
 }

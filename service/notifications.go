@@ -2,7 +2,6 @@ package service
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"time"
 )
@@ -33,7 +32,6 @@ func AddNotification(userID, postID, mark int) error {
 	}
 	_, err = db.Exec(query, reciverID, userID, action, postID, "")
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
 	return nil
@@ -46,7 +44,6 @@ func AddRequest(userID, postID int, action, message string) error {
 	query := `INSERT INTO notifications_requests (reciver_id, requestor_id, action, post_id, message) VALUES (?, ?, ?, ?, ?)`
 	_, err := db.Exec(query, admin.Id, userID, action, postID, message)
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
 	return nil
@@ -58,10 +55,8 @@ func AddResponse(userID, postID int, action, message string) error {
 	query := `INSERT INTO notifications_requests (reciver_id, requestor_id, action, post_id, message) VALUES (?, ?, ?, ?, ?)`
 	_, err := db.Exec(query, userID, admin.Id, action, postID, message)
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
-	fmt.Println("I'm here")
 	return nil
 }
 
@@ -69,10 +64,8 @@ func IsRequestAlreadyExisted(userID, postID int, action string) error {
 	db := GetDBAddr()
 	admin, _ := getAdmin()
 	query := `SELECT id FROM notifications_requests WHERE reciver_id = ? AND requestor_id = ? AND action = ? AND post_id = ?`
-	res, err := db.Exec(query, admin.Id, userID, action, postID)
-	fmt.Println("res", res)
+	_, err := db.Exec(query, admin.Id, userID, action, postID)
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
 	return nil
@@ -161,7 +154,6 @@ func GetNotifications(userID int) ([]Notification, error) {
 
 		err = res.Scan(&notification.Id, &notification.Reciver, &requestorId, &notification.Action, &postID, &message, &notification.Seen, &notification.CreatedAt)
 		if err != nil {
-			fmt.Println(err)
 			return notifications, nil
 		}
 

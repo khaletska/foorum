@@ -1,4 +1,4 @@
--- ALTER TABLE posts ADD COLUMN comments    JSONB;
+
 -- DROP TABLE users;
 -- DROP TABLE posts;
 -- DROP TABLE comments;
@@ -17,10 +17,7 @@ SELECT * FROM cookies;
 SELECT * FROM users;
 SELECT * FROM notifications_requests;
 
-DELETE FROM users WHERE user_name = "Ольга Балагуш";
-
-SELECT id FROM users WHERE user_name = "Ольга Балагуш" AND role = 3;
--- SELECT id FROM notifications WHERE action = "request" AND who_did_it = ?
+UPDATE users SET image_path = '' WHERE id = 16;
 
 CREATE TABLE IF NOT EXISTS users (
         id 		INTEGER PRIMARY KEY AUTOINCREMENT,

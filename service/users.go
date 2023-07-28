@@ -3,7 +3,6 @@ package service
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"log"
 	"main/helpers"
 	"os"
@@ -193,8 +192,6 @@ func getAdmin() (*User, error) {
 
 	posts, _ := GetPostsByUserId(u.Id)
 	u.Posts = *posts
-
-	fmt.Println("Admin is: ", u.Name)
 
 	return &u, nil
 }

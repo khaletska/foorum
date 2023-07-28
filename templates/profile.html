@@ -283,10 +283,6 @@
                 </div>
             </a>
             {{ end }}
-
-            {{ if eq (len .User.Posts) 0 }}
-            <span class="no-posts-message">no posts have been created yet</span>
-            {{end}}
         </div>
 
         <div id="user-liked-disliked-posts" class="content">
@@ -325,7 +321,10 @@
             {{ end }}
 
             {{ if eq (len .LikedDislikedByCurrUser) 0 }}
-            <span class="no-posts-message">no posts have been liked or disliked yet</span>
+            <div class="no-posts-container">
+                <span class="no-posts-message">no posts yet.</span>
+                <a class="no-posts-message" href="/">tap here to like some.</a>
+            </div>
             {{end}}
         </div>
 
@@ -366,7 +365,10 @@
             {{ end }}
 
             {{ if eq (len .CommentsByCurrUser) 0 }}
-            <span class="no-posts-message">no posts have been commented yet</span>
+            <div class="no-posts-container">
+                <span class="no-posts-message">no posts yet.</span>
+                <a class="no-posts-message" href="/">tap here to comment some.</a>
+            </div>
             {{end}}
         </div>
     </div>

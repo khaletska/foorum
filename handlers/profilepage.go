@@ -161,8 +161,6 @@ func UpdateProfilePicture(w http.ResponseWriter, r *http.Request) {
 			template.Execute(w, ServerResp)
 			return
 		} else if err != nil {
-			fmt.Println("here2", err)
-
 			RenderErrorPage(w, http.StatusInternalServerError)
 			return
 		}

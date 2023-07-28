@@ -334,15 +334,12 @@ func filterPostsByCategory(category string) []service.Post {
 
 func AddCategory(w http.ResponseWriter, r *http.Request) {
 
-	// fmt.Println(ServerResp.CurrentUser.Role)
-
 	if ServerResp.CurrentUser.Role != 3 {
 		RenderErrorPage(w, 403)
 		return
 	}
 
 	category := r.FormValue("add-category-input")
-	fmt.Println(category)
 
 	service.AddCategory(category)
 
